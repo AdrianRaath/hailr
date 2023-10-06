@@ -17,16 +17,6 @@ var textarea = document.getElementById("Message"); // Replace "yourTextareaId" w
 textarea.style.resize = "none";
 // Set the column-count property to the desired value (e.g., 1)
 
-// Get references to the open and close buttons by their IDs
-const actualButton = document.getElementById("form-submit");
-const visibleButton = document.getElementById("form-button");
-
-// Add a click event listener to the close button
-visibleButton.addEventListener("click", function () {
-  // Trigger a click event on the open button
-  actualButton.click();
-});
-
 document.getElementById("Message").setAttribute("rows", "1");
 
 $(document).ready(function () {
@@ -42,4 +32,44 @@ $(document).ready(function () {
       $(this).css("color", "black");
     }
   });
+});
+
+$(document).ready(function () {
+  $(".form-input")
+    .on("focus", function () {
+      // When the input is focused, make the sibling label visible and move it above the input
+      $(this).siblings(".form-field-top-label").css({
+        visibility: "visible",
+        left: "0",
+        opacity: "1",
+      });
+    })
+    .on("blur", function () {
+      // When the input loses focus, check its value. If it's empty, reset the label's position.
+      if ($(this).val().length === 0 || $(this).val() === "Default") {
+        $(this).siblings(".form-field-top-label").css({
+          visibility: "hidden",
+          left: "-20px",
+          opacity: "0",
+        });
+      }
+    });
+});
+
+// For text inputs
+$(".form-input").on("blur", function () {
+  if ($(this).val().length > 0 && $(this).val() !== "Default") {
+    $(this).addClass("has-value");
+  } else {
+    $(this).removeClass("has-value");
+  }
+});
+
+// For select input
+$("select.form-input").on("change blur", function () {
+  if ($(this).val() !== "Default" && $(this).val() !== "") {
+    $(this).addClass("has-value");
+  } else {
+    $(this).removeClass("has-value");
+  }
 });
