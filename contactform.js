@@ -19,42 +19,38 @@ textarea.style.resize = "none";
 
 document.getElementById("Message").setAttribute("rows", "1");
 
-$(document).ready(function () {
-  // Listen for change events on select inputs with the specified class
-  $(".form-input.is-select-input").on("change", function () {
-    var selectedValue = $(this).val();
+// Listen for change events on select inputs with the specified class
+$(".form-input.is-select-input").on("change", function () {
+  var selectedValue = $(this).val();
 
-    if (selectedValue === "Default") {
-      // Set the font color to #b6b6b6
-      $(this).css("color", "#b6b6b6");
-    } else {
-      // Set the font color to black
-      $(this).css("color", "black");
+  if (selectedValue === "Default") {
+    // Set the font color to #b6b6b6
+    $(this).css("color", "#b6b6b6");
+  } else {
+    // Set the font color to black
+    $(this).css("color", "black");
+  }
+});
+
+$(".form-input")
+  .on("focus", function () {
+    // When the input is focused, make the sibling label visible and move it above the input
+    $(this).siblings(".form-field-top-label").css({
+      visibility: "visible",
+      left: "0",
+      opacity: "1",
+    });
+  })
+  .on("blur", function () {
+    // When the input loses focus, check its value. If it's empty, reset the label's position.
+    if ($(this).val().length === 0 || $(this).val() === "Default") {
+      $(this).siblings(".form-field-top-label").css({
+        visibility: "hidden",
+        left: "-20px",
+        opacity: "0",
+      });
     }
   });
-});
-
-$(document).ready(function () {
-  $(".form-input")
-    .on("focus", function () {
-      // When the input is focused, make the sibling label visible and move it above the input
-      $(this).siblings(".form-field-top-label").css({
-        visibility: "visible",
-        left: "0",
-        opacity: "1",
-      });
-    })
-    .on("blur", function () {
-      // When the input loses focus, check its value. If it's empty, reset the label's position.
-      if ($(this).val().length === 0 || $(this).val() === "Default") {
-        $(this).siblings(".form-field-top-label").css({
-          visibility: "hidden",
-          left: "-20px",
-          opacity: "0",
-        });
-      }
-    });
-});
 
 // For text inputs
 $(".form-input").on("blur", function () {
