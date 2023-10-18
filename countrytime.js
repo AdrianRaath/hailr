@@ -20,6 +20,10 @@ function updateCapeTownTimeAndBackground() {
   // Update the Cape Town time display
   const formattedCapeTownTime = capeTownTime.toFormat(`(hh:mm:ss a)`);
   document.getElementById("capeTownTime").textContent = formattedCapeTownTime;
+
+  // Toggle the "blink" class on the circle element
+  const ctCircle = document.querySelector("#ct-circle");
+  ctCircle.classList.toggle("blink");
 }
 
 // Function to update the London time and background class
@@ -44,6 +48,10 @@ function updateLondonTimeAndBackground() {
   // Update the London time display
   const formattedLondonTime = londonTime.toFormat(`(hh:mm:ss a)`);
   document.getElementById("londonTime").textContent = formattedLondonTime;
+
+  // Toggle the "blink" class on the circle element
+  const ldCircle = document.querySelector("#ld-circle");
+  ldCircle.classList.toggle("blink");
 }
 
 // Update the Cape Town time and background class every second
