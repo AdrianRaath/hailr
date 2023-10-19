@@ -8,6 +8,15 @@ closeButton.addEventListener("click", function () {
   openButton.click();
 });
 
+const mobileOpenButton = document.getElementById("mobile-open-button");
+const mobileCloseButton = document.getElementById("mobile-close-button");
+
+// Add a click event listener to the close button
+mobileCloseButton.addEventListener("click", function () {
+  // Trigger a click event on the open button
+  mobileOpenButton.click();
+});
+
 //Functionality to invert nav colors when over a dark/light element
 const fixedLogo = document.getElementById("fixed-logo");
 const fixedButtons = document.getElementById("fixed-buttons");
